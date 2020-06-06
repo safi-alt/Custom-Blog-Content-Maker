@@ -5,6 +5,12 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import axios from "axios";
 
+// to set base URL paths which never change
+
+axios.defaults.baseURL = "https://jsonplaceholder.typicode.com";
+axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
+axios.defaults.headers.post["Content-Type"] = "application/json";
+
 //use() helps in registering new interceptor
 axios.interceptors.request.use(
   (request) => {
