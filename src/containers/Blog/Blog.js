@@ -8,6 +8,7 @@ import "./Blog.css";
 class Blog extends Component {
   state = {
     posts: [],
+    selectedPostId: null,
   };
   componentDidMount() {
     axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
@@ -20,15 +21,27 @@ class Blog extends Component {
     });
   }
   //then() helps to collect the data b/c the get method is aysnc and after it is completed then() is executed
+
+  postSelectedHandler = (id) => {
+    this.setState({ selectedPostId: id });
+  };
+
   render() {
     const posts = this.state.posts.map((post) => {
-      return <Post key={post.id} title={post.title} author={post.author} />;
+      return (
+        <Post
+          key={post.id}
+          title={post.title}
+          author={post.author}
+          clicked={() => this.postSelectedHandler(post.id)}
+        />
+      );
     });
     return (
       <div>
         <section className="Posts">{posts}</section>
         <section>
-          <FullPost />
+          <FullPost id={this.state.selectedPostId} />
         </section>
         <section>
           <NewPost />
