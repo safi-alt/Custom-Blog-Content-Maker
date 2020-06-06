@@ -18,7 +18,7 @@ class Blog extends Component {
       .then((response) => {
         const posts = response.data.slice(0, 4);
         const updatedPosts = posts.map((post) => {
-          return { ...post, author: "Max" };
+          return { ...post, author: "Safi" };
         });
         this.setState({ posts: updatedPosts });
         //   console.log(response);
