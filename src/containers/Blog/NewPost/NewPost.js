@@ -19,7 +19,10 @@ class NewPost extends Component {
     };
     axios.post("/posts", data).then((response) => {
       console.log(response);
-      this.setState({ submitted: true });
+      this.props.history.push("/posts"); // This helps on adding page to the stack without removing the previous page so can go back to previous page
+      //this.setState({ submitted: true });
+      // or
+      //this.props.history.replace('/posts'); both work the same by creating a new page so cant go back to previous page
     });
   };
 
